@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payments Startups Report - YC, Neo & Speedrun Batches (2024-2025)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #f9f9f9;
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 300;
+            color: #234f41;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .key-insight {
+            background: #fff;
+            border-left: 4px solid #e5a819;
+            padding: 30px;
+            margin: 40px 0;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+
+        .key-insight h2 {
+            color: #234f41;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .key-insight p {
+            color: #555;
+        }
+
+        .highlight {
+            color: #e5a819;
+            font-weight: 500;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .section-header h2 {
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: #234f41;
+        }
+
+        .section-badge {
+            background: #e5a819;
+            color: #fff;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .companies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 24px;
+        }
+
+        .company-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 28px;
+            border: 1px solid #eee;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .company-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+        }
+
+        .company-card.ai-targeting {
+            border-color: #e5a819;
+            border-width: 2px;
+        }
+
+        .company-card.ai-targeting::before {
+            content: "AI Company Target";
+            position: absolute;
+            top: 12px;
+            right: -38px;
+            background: #e5a819;
+            color: #fff;
+            padding: 4px 45px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            transform: rotate(45deg);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .company-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+
+        .favicon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .favicon img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .favicon-fallback {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #234f41, #3a7a65);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .company-name {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #234f41;
+        }
+
+        .company-name a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .company-name a:hover {
+            color: #e5a819;
+        }
+
+        .batch-info {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #f5f5f5;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 14px;
+            color: #666;
+        }
+
+        .batch-logo {
+            font-weight: 600;
+            color: #ff6600;
+        }
+
+        .batch-logo.neo {
+            color: #234f41;
+        }
+
+        .batch-logo.speedrun {
+            color: #e5a819;
+        }
+
+        .description {
+            color: #555;
+            font-size: 0.92rem;
+            margin-bottom: 18px;
+            line-height: 1.65;
+        }
+
+        .description strong {
+            color: #234f41;
+            font-weight: 500;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .tag {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .tag.stablecoins {
+            background: #e8f5f1;
+            color: #1a6b52;
+        }
+
+        .tag.ai-first {
+            background: #fef8e8;
+            color: #a67c00;
+        }
+
+        .tag.usage-based {
+            background: #eef2ff;
+            color: #4f5fb5;
+        }
+
+        .tag.cross-border {
+            background: #fef2f2;
+            color: #b45454;
+        }
+
+        .tag.emerging-markets {
+            background: #e8f8f5;
+            color: #1a7a6a;
+        }
+
+        .tag.developer-tools {
+            background: #f3f0ff;
+            color: #6b54b4;
+        }
+
+        .tag.b2b {
+            background: #eff6ff;
+            color: #3b66b5;
+        }
+
+        .tag.open-source {
+            background: #ecfdf5;
+            color: #1a7a52;
+        }
+
+        .tag.payroll {
+            background: #fdf2f8;
+            color: #a34f7a;
+        }
+
+        .tag.pos {
+            background: #fff7ed;
+            color: #a35c2a;
+        }
+
+        .tag.gaming {
+            background: #f5f3ff;
+            color: #6b4fb4;
+        }
+
+        .tag.neobank {
+            background: #ecfeff;
+            color: #0e7490;
+        }
+
+        .tag.p2p {
+            background: #fdf2f8;
+            color: #a34f7a;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: #fff;
+            padding: 28px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            border: 1px solid #eee;
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 300;
+            color: #234f41;
+        }
+
+        .stat-label {
+            color: #888;
+            font-size: 0.85rem;
+            margin-top: 6px;
+        }
+
+        .analysis-section {
+            background: #fff;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 50px 0;
+            border: 1px solid #eee;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+
+        .analysis-section h2 {
+            color: #234f41;
+            margin-bottom: 25px;
+            font-size: 1.4rem;
+            font-weight: 400;
+        }
+
+        .analysis-section h3 {
+            color: #e5a819;
+            margin: 28px 0 16px;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .analysis-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .analysis-section li {
+            position: relative;
+            padding-left: 22px;
+            margin-bottom: 10px;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .analysis-section li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            background: #e5a819;
+            border-radius: 50%;
+        }
+
+        .analysis-section li strong {
+            color: #234f41;
+            font-weight: 500;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #e0e0e0;
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px 0;
+            padding: 24px;
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid #eee;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .companies-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Collapsible sections */
+        .collapsible {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .collapsible .section-header {
+            position: relative;
+        }
+
+        .collapsible .section-header::after {
+            content: "+";
+            position: absolute;
+            right: 0;
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: #888;
+            transition: transform 0.2s ease;
+        }
+
+        .collapsible.expanded .section-header::after {
+            content: "−";
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .collapsible.expanded .collapsible-content {
+            max-height: 3000px;
+            transition: max-height 0.5s ease-in;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Payments Startups Landscape Report</h1>
+            <p class="subtitle">Identifying opportunities in billing infrastructure for AI companies. Analysis of payments companies from Y Combinator (W25, F24, S24, W24), Neo Accelerator, and a16z Speedrun batches.</p>
+        </header>
+
+        <div class="key-insight">
+            <h2>Investment Thesis: Playing the AI Payments Wave</h2>
+            <p>Stripe is reportedly seeing massive growth driven by new AI companies adopting their platform and scaling rapidly. <span class="highlight">The question: how do we play this trend?</span> One option is buying Stripe directly, but that's difficult for us. The alternative: identify emerging companies building specialized payment/billing infrastructure for AI companies. These startups are positioning themselves as the layer that makes Stripe work better for AI use cases&mdash;usage-based billing, credits, token metering, hybrid pricing&mdash;capturing value as AI companies scale on Stripe's rails.</p>
+        </div>
+
+        <!-- Analysis Section -->
+        <div class="analysis-section">
+            <h2>Why AI Companies Have Unique Billing Needs</h2>
+
+            <h3>The Core Problem: AI Economics Don't Fit Traditional Billing</h3>
+            <ul>
+                <li><strong>Unpredictable unit economics:</strong> Every token, inference call, or GPU hour adds to infrastructure costs&mdash;flat monthly fees can cause margins to vanish fast</li>
+                <li><strong>Hybrid pricing is the norm:</strong> 56% of AI company leaders use a mix of subscription + usage-based fees (per Stripe survey), but most billing tools were built for one or the other</li>
+                <li><strong>Constant pricing iteration:</strong> AI companies pivot pricing frequently as they learn what customers will pay&mdash;seat-based &rarr; token-based &rarr; credit-based &rarr; hybrid</li>
+                <li><strong>Bill shock risk:</strong> Pay-as-you-go can surprise customers with unexpectedly large bills, leading to churn. Need credit caps, usage alerts, and prepaid models</li>
+                <li><strong>Multi-product complexity:</strong> Many AI companies ship multiple models/products with different cost structures that need unified billing</li>
+            </ul>
+
+            <h3>Why Stripe Alone Isn't Enough</h3>
+            <ul>
+                <li>Stripe Billing was "force-fitted with usage-based pricing capabilities"&mdash;it works, but requires significant custom code</li>
+                <li>Complex webhook handling, manual meter aggregation, and custom invoicing logic needed for real usage-based billing</li>
+                <li>Credits, rollovers, usage caps, and tiered pricing require building a billing layer on top of Stripe</li>
+                <li>Stripe's Metronome acquisition (OpenAI's billing provider) signals they know there's a gap in their native offerings</li>
+                <li>At scale, Stripe fees become significant: 1000 transactions/month at $10K MRR = ~$780/month (7.8%) in fees</li>
+            </ul>
+
+            <h3>How New Entrants Win AI Company Customers</h3>
+            <ul>
+                <li><strong>Layer on top, don't replace:</strong> All the winners (Autumn, Lago, Orb) position as a billing layer OVER Stripe, not a replacement&mdash;this is critical</li>
+                <li><strong>Speed to implementation:</strong> Autumn claims to "save at least a week and potentially months of Stripe integration time"</li>
+                <li><strong>Pricing flexibility without code changes:</strong> Change pricing models (credits, tiers, usage) without redeploying or touching code</li>
+                <li><strong>Real-time metering:</strong> Track tokens, API calls, compute time at the atomic level&mdash;"if you can't meter it, you can't monetize it"</li>
+                <li><strong>YC network effect:</strong> Autumn already powers 40+ YC companies&mdash;the batch becomes the customer base and referral engine</li>
+            </ul>
+
+            <h3>Investment Implications</h3>
+            <ul>
+                <li><strong>Complementary to Stripe:</strong> These companies grow WITH Stripe, not against it&mdash;lower competitive risk</li>
+                <li><strong>Ride the AI wave:</strong> As AI companies scale revenue, billing infrastructure scales proportionally</li>
+                <li><strong>Land-and-expand:</strong> Start with billing, expand to revenue analytics, pricing optimization, finance ops</li>
+                <li><strong>Open source as wedge:</strong> Lago and Autumn both use open-source to drive adoption, then monetize on hosting/enterprise features</li>
+            </ul>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">3</div>
+                <div class="stat-label">AI Billing Companies</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">2</div>
+                <div class="stat-label">Open Source</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">40+</div>
+                <div class="stat-label">YC Cos Using Autumn</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">56%</div>
+                <div class="stat-label">AI Cos Use Hybrid Pricing</div>
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item"><span class="tag ai-first">AI-First</span> Targeting AI companies as customers</div>
+            <div class="legend-item"><span class="tag usage-based">Usage-Based</span> Metered/consumption billing</div>
+            <div class="legend-item"><span class="tag open-source">Open Source</span> OSS-first go-to-market</div>
+            <div class="legend-item"><span class="tag developer-tools">Developer Tools</span> API/SDK focused</div>
+        </div>
+
+        <!-- AI Companies Targeting Section -->
+        <section class="section">
+            <div class="section-header">
+                <h2>Primary Targets: AI Billing Infrastructure</h2>
+                <span class="section-badge">Investment Focus</span>
+            </div>
+
+            <div class="companies-grid">
+                <div class="company-card ai-targeting">
+                    <div class="company-header">
+                        <div class="favicon">
+                            <img src="https://www.google.com/s2/favicons?domain=useautumn.com&sz=64" alt="Autumn" onerror="this.parentElement.innerHTML='<div class=favicon-fallback>A</div>'">
+                        </div>
+                        <div class="company-name"><a href="https://useautumn.com" target="_blank">Autumn</a></div>
+                    </div>
+                    <div class="batch-info">
+                        <span class="batch-logo">YC</span> S25 (Pivoted from F24) &bull; 2025
+                    </div>
+                    <p class="description"><strong>"Stripe for AI startups"</strong> - Open-source billing infrastructure layer over Stripe. Handles usage-based billing, credits, subscriptions, rollovers for AI companies. Already powers 40+ YC companies processing millions in revenue. Solves the problem that "when you change pricing (which AI companies do A LOT), everything needs to be ripped out."</p>
+                    <div class="tags">
+                        <span class="tag ai-first">AI-First</span>
+                        <span class="tag usage-based">Usage-Based</span>
+                        <span class="tag developer-tools">Developer Tools</span>
+                        <span class="tag open-source">Open Source</span>
+                    </div>
+                </div>
+
+                <div class="company-card ai-targeting">
+                    <div class="company-header">
+                        <div class="favicon">
+                            <img src="https://www.google.com/s2/favicons?domain=withorb.com&sz=64" alt="Orb" onerror="this.parentElement.innerHTML='<div class=favicon-fallback>O</div>'">
+                        </div>
+                        <div class="company-name"><a href="https://www.withorb.com" target="_blank">Orb</a></div>
+                    </div>
+                    <div class="batch-info">
+                        <span class="batch-logo" style="color: #234f41;">Series B</span> San Francisco
+                    </div>
+                    <p class="description"><strong>Usage-Based Billing Built for AI</strong> - The revenue design platform powering AI and software companies. Handles 250K+ events/second, supports prepaid credits, threshold billing, and custom SQL metrics. Powers Vercel, Replit, LaunchDarkly. Enterprise-grade with hybrid pricing (usage + seats + platform fees).</p>
+                    <div class="tags">
+                        <span class="tag ai-first">AI-First</span>
+                        <span class="tag usage-based">Usage-Based</span>
+                        <span class="tag developer-tools">Developer Tools</span>
+                        <span class="tag b2b">Enterprise</span>
+                    </div>
+                </div>
+
+                <div class="company-card ai-targeting">
+                    <div class="company-header">
+                        <div class="favicon">
+                            <img src="https://www.google.com/s2/favicons?domain=getlago.com&sz=64" alt="Lago" onerror="this.parentElement.innerHTML='<div class=favicon-fallback>L</div>'">
+                        </div>
+                        <div class="company-name"><a href="https://getlago.com" target="_blank">Lago</a></div>
+                    </div>
+                    <div class="batch-info">
+                        <span class="batch-logo">YC</span> W21 &bull; Winter 2021
+                    </div>
+                    <p class="description"><strong>Open Source Metering & Usage-Based Billing</strong> - Popular among developer-oriented startups since 2022. No vendor lock-in or transaction fees. Can process 15,000 events per second. Strong alternative to proprietary billing systems for AI API companies.</p>
+                    <div class="tags">
+                        <span class="tag usage-based">Usage-Based</span>
+                        <span class="tag developer-tools">Developer Tools</span>
+                        <span class="tag open-source">Open Source</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Other Payments Companies Section -->
+        <section class="section collapsible">
+            <div class="section-header">
+                <h2>Other Payments Companies (Less Relevant to AI Thesis)</h2>
+                <span class="section-badge" style="background: #888;">For Reference</span>
+            </div>
+
+            <div class="collapsible-content">
+            <p style="color: #666; margin-bottom: 20px; font-size: 0.9rem;">These companies represent other payments trends from recent YC batches (stablecoins, cross-border, neobanks) but are not specifically targeting AI company billing needs.</p>
+
+            <div class="companies-grid">
+                <div class="company-card">
+                    <div class="company-header">
+                        <div class="favicon">
+                            <img src="https://www.google.com/s2/favicons?domain=infinite.dev&sz=64" alt="Infinite" onerror="this.parentElement.innerHTML='<div class=favicon-fallback>I</div>'">
+                        </div>
+                        <div class="company-name"><a href="https://infinite.dev" target="_blank">Infinite</a></div>
+                    </div>
+                    <div class="batch-info">
+                        <span class="batch-logo">YC</span> W25 &bull; Winter 2025
+                    </div>
+                    <p class="description"><strong>Global B2B Stablecoin Processor</strong> - Stablecoin payment processor offering APIs and SDKs for instant global money movement. Tailored for SMBs. Enables businesses to send/receive payments at a fraction of the cost of traditional solutions.</p>
+                    <div class="tags">
+                        <span class="tag stablecoins">Stablecoins</span>
+                        <span class="tag b2b">B2B</span>
+                        <span class="tag cross-border">Cross-Border</span>
+                        <span class="tag developer-tools">Developer Tools</span>
+                    </div>
+                </div>
+
+                <div class="company-card">
+                    <div class="company-header">
+                        <div class="favicon">
+                            <img src="https://www.google.com/s2/favicons?domain=blindpay.com&sz=64" alt="BlindPay" onerror="this.parentElement.innerHTML='<div class=favicon-fallback>B</div>'">
+                        </div>
+                        <div class="company-name"><a href="https://blindpay.com" target="_blank">BlindPay</a></div>
+                    </div>
+                    <div class="batch-info">
+                        <span class="batch-logo">YC</span> W25 &bull; Winter 2025
+                    </div>
+                    <p class="description"><strong>Stablecoin API for Global Payments</strong> - Enables companies to send and receive money worldwide using fiat, stablecoins, and multiple blockchains. Handles all complex compliance and regulatory requirements. One of YC's three stablecoin bets for 2025.</p>
+                    <div class="tags">
+                        <span class="tag stablecoins">Stablecoins</span>
+                        <span class="tag developer-tools">Developer Tools</span>
+                        <span class="tag cross-border">Cross-Border</span>
+                    </div>
+                </div>
+
+                <div class="company-card">
+                    <div class="company-header">
+                        <div class="favicon">
+                            <img src="https://www.google.com/s2/favicons?domain=gokarsa.com&sz=64" alt="Karsa" onerror="this.parentElement.innerHTML='<div class=favicon-fallback>K</div>'">
+                        </div>
+                        <div class="company-name"><a href="https://gokarsa.com" target="_blank">Karsa</a></div>
+                    </div>
+                    <div class="batch-info">
+                        <span class="batch-logo">YC</span> W25 &bull; Winter 2025
+                    </div>
+                    <p class="description"><strong>Stablecoin Neobank for Emerging Markets</strong> - Enables 1B+ people in emerging markets to save in stablecoins. Uses P2P structure to be global from day one and circumvent government interference. Live in Pakistan, India, Nigeria, Kenya, Paraguay. Spend globally via Visa cards.</p>
+                    <div class="tags">
+                        <span class="tag stablecoins">Stablecoins</span>
+                        <span class="tag neobank">Neobank</span>
+                        <span class="tag emerging-markets">Emerging Markets</span>
+                        <span class="tag p2p">P2P</span>
+                    </div>
+                </div>
+
+                <div class="company-card">
+                    <div class="company-header">
+                        <div class="favicon">
+                            <img src="https://www.google.com/s2/favicons?domain=onconsul.com&sz=64" alt="Consul" onerror="this.parentElement.innerHTML='<div class=favicon-fallback>C</div>'">
+                        </div>
+                        <div class="company-name"><a href="https://onconsul.com" target="_blank">Consul</a></div>
+                    </div>
+                    <div class="batch-info">
+                        <span class="batch-logo">YC</span> W24 &bull; Winter 2024
+                    </div>
+                    <p class="description"><strong>Stablecoin Payouts for Marketplaces</strong> - Makes it easy for marketplaces, agencies, and startups to make payouts using stablecoins. Funds held as USDC on Base. Send to anyone with just an email (Coinbase TEE infrastructure). Less than 1 min KYC. Custody by BNY Mellon.</p>
+                    <div class="tags">
+                        <span class="tag stablecoins">Stablecoins</span>
+                        <span class="tag b2b">B2B</span>
+                    </div>
+                </div>
+
+                <div class="company-card">
+                    <div class="company-header">
+                        <div class="favicon">
+                            <img src="https://www.google.com/s2/favicons?domain=infiniaweb.com&sz=64" alt="Infinia" onerror="this.parentElement.innerHTML='<div class=favicon-fallback>I</div>'">
+                        </div>
+                        <div class="company-name"><a href="https://infiniaweb.com" target="_blank">Infinia</a></div>
+                    </div>
+                    <div class="batch-info">
+                        <span class="batch-logo">YC</span> W25 &bull; Winter 2025
+                    </div>
+                    <p class="description"><strong>Bridge Stablecoins to Local Payment Rails</strong> - Enables fintechs, businesses, and banks to bridge stablecoins with local payment rails in emerging markets. CEO was founding team at dLocal ($0 to $100M ARR). First solution to unify LATAM payment rails for Pay By Bank.</p>
+                    <div class="tags">
+                        <span class="tag stablecoins">Stablecoins</span>
+                        <span class="tag emerging-markets">Emerging Markets</span>
+                        <span class="tag cross-border">Cross-Border</span>
+                    </div>
+                </div>
+
+                <div class="company-card">
+                    <div class="company-header">
+                        <div class="favicon">
+                            <img src="https://www.google.com/s2/favicons?domain=blaze.money&sz=64" alt="Blaze" onerror="this.parentElement.innerHTML='<div class=favicon-fallback>B</div>'">
+                        </div>
+                        <div class="company-name"><a href="https://blaze.money" target="_blank">Blaze</a></div>
+                    </div>
+                    <div class="batch-info">
+                        <span class="batch-logo">YC</span> S24 &bull; Summer 2024
+                    </div>
+                    <p class="description"><strong>Global Venmo for Cross-Border Payments</strong> - P2P payments app using USDC for fast, cheap transfers between any two people anywhere in the world. Live in US and Mexico on iOS/Android. Founders scaled previous startup to $1M ARR, led teams at Spotify, Artsy, Bitpanda.</p>
+                    <div class="tags">
+                        <span class="tag stablecoins">Stablecoins</span>
+                        <span class="tag p2p">P2P</span>
+                        <span class="tag cross-border">Cross-Border</span>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- AI-Native Payments Section -->
+        <section class="section collapsible">
+            <div class="section-header">
+                <h2>AI-Native Payments & POS</h2>
+                <span class="section-badge" style="background: #888;">For Reference</span>
+            </div>
+
+            <div class="collapsible-content">
+            <p style="color: #666; margin-bottom: 20px; font-size: 0.9rem;">These companies use AI in their product but aren't specifically solving billing for AI companies.</p>
+
+            <div class="companies-grid">
+                <div class="company-card">
+                    <div class="company-header">
+                        <div class="favicon">
+                            <img src="https://www.google.com/s2/favicons?domain=zavopay.com&sz=64" alt="Zavo" onerror="this.parentElement.innerHTML='<div class=favicon-fallback>Z</div>'">
+                        </div>
+                        <div class="company-name"><a href="https://zavopay.com" target="_blank">Zavo</a></div>
+                    </div>
+                    <div class="batch-info">
+                        <span class="batch-logo">YC</span> F25 &bull; Fall 2025
+                    </div>
+                    <p class="description"><strong>AI Point-of-Sale for Restaurants</strong> - Unifies payments, POS, and AI agents into one platform. 400+ businesses use Zavo. AI agents handle operations and finance 24/7. Replaces 6-8 disconnected systems restaurant owners typically juggle.</p>
+                    <div class="tags">
+                        <span class="tag ai-first">AI-First</span>
+                        <span class="tag pos">POS</span>
+                    </div>
+                </div>
+
+                <div class="company-card">
+                    <div class="company-header">
+                        <div class="favicon">
+                            <img src="https://www.google.com/s2/favicons?domain=paywithlocus.com&sz=64" alt="Locus" onerror="this.parentElement.innerHTML='<div class=favicon-fallback>L</div>'">
+                        </div>
+                        <div class="company-name"><a href="https://paywithlocus.com" target="_blank">Locus</a></div>
+                    </div>
+                    <div class="batch-info">
+                        <span class="batch-logo">YC</span> F25 &bull; Fall 2025
+                    </div>
+                    <p class="description"><strong>Payments for AI Agents</strong> - Enables autonomous agents to execute payments securely with defined permissions and limits. Designed for the emerging "agentic economy" where AI agents need to transact on behalf of users.</p>
+                    <div class="tags">
+                        <span class="tag ai-first">AI-First</span>
+                        <span class="tag developer-tools">Developer Tools</span>
+                    </div>
+                </div>
+
+                <div class="company-card">
+                    <div class="company-header">
+                        <div class="favicon">
+                            <img src="https://www.google.com/s2/favicons?domain=ledgerup.ai&sz=64" alt="LedgerUp" onerror="this.parentElement.innerHTML='<div class=favicon-fallback>L</div>'">
+                        </div>
+                        <div class="company-name"><a href="https://ledgerup.ai" target="_blank">LedgerUp</a></div>
+                    </div>
+                    <div class="batch-info">
+                        <span class="batch-logo">YC</span> S24 &bull; Summer 2024
+                    </div>
+                    <p class="description"><strong>AI billing teammate for B2B SaaS</strong> - Transforms contract-based billing into a frictionless process. Their AI "Ari" parses contracts, issues invoices, and collects payments in real-time. Integrates with CRM, automates invoicing, and lives in Slack with real-time revenue data.</p>
+                    <div class="tags">
+                        <span class="tag ai-first">AI-First</span>
+                        <span class="tag usage-based">Usage-Based</span>
+                        <span class="tag b2b">B2B SaaS</span>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- Other Notable Companies -->
+        <section class="section collapsible">
+            <div class="section-header">
+                <h2>Other Notable Payments Companies</h2>
+                <span class="section-badge" style="background: #888;">For Reference</span>
+            </div>
+
+            <div class="collapsible-content">
+            <p style="color: #666; margin-bottom: 20px; font-size: 0.9rem;">Cross-border and neobank companies from recent YC batches. Not directly related to AI billing thesis.</p>
+
+            <div class="companies-grid">
+                <div class="company-card">
+                    <div class="company-header">
+                        <div class="favicon">
+                            <img src="https://www.google.com/s2/favicons?domain=capi.money&sz=64" alt="Capi" onerror="this.parentElement.innerHTML='<div class=favicon-fallback>C</div>'">
+                        </div>
+                        <div class="company-name"><a href="https://capi.money" target="_blank">Capi</a></div>
+                    </div>
+                    <div class="batch-info">
+                        <span class="batch-logo">YC</span> Recent Batch
+                    </div>
+                    <p class="description"><strong>International Payments for Emerging Markets</strong> - Helps businesses in emerging markets make international payments. Focused on importers who pay up to 10% to settle invoices. Goal: give emerging market businesses the same price and speed as US/Europe.</p>
+                    <div class="tags">
+                        <span class="tag cross-border">Cross-Border</span>
+                        <span class="tag emerging-markets">Emerging Markets</span>
+                        <span class="tag b2b">B2B</span>
+                    </div>
+                </div>
+
+                <div class="company-card">
+                    <div class="company-header">
+                        <div class="favicon">
+                            <img src="https://www.google.com/s2/favicons?domain=munify.io&sz=64" alt="Munify" onerror="this.parentElement.innerHTML='<div class=favicon-fallback>M</div>'">
+                        </div>
+                        <div class="company-name"><a href="https://munify.io" target="_blank">Munify</a></div>
+                    </div>
+                    <div class="batch-info">
+                        <span class="batch-logo">YC</span> Recent Batch
+                    </div>
+                    <p class="description"><strong>Cross-Border Neobank for Middle East</strong> - Serves Middle East and its diaspora. Instantly open USD account, get virtual card, send money home at best rates. Targeting the large remittance corridor.</p>
+                    <div class="tags">
+                        <span class="tag neobank">Neobank</span>
+                        <span class="tag cross-border">Cross-Border</span>
+                        <span class="tag emerging-markets">Emerging Markets</span>
+                    </div>
+                </div>
+
+                <div class="company-card">
+                    <div class="company-header">
+                        <div class="favicon">
+                            <img src="https://www.google.com/s2/favicons?domain=xpay.app&sz=64" alt="xPay" onerror="this.parentElement.innerHTML='<div class=favicon-fallback>x</div>'">
+                        </div>
+                        <div class="company-name"><a href="https://xpay.app" target="_blank">xPay</a></div>
+                    </div>
+                    <div class="batch-info">
+                        <span class="batch-logo">YC</span> W24 &bull; Winter 2024
+                    </div>
+                    <p class="description"><strong>Commerce Solution for SaaS Companies</strong> - Helps SaaS companies manage billing, foreign sales tax, and payments in one platform. Simplifies the complexity of global SaaS commerce.</p>
+                    <div class="tags">
+                        <span class="tag b2b">B2B SaaS</span>
+                        <span class="tag usage-based">Usage-Based</span>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- Neo & Speedrun Section -->
+        <section class="section collapsible">
+            <div class="section-header">
+                <h2>Neo Accelerator & a16z Speedrun</h2>
+                <span class="section-badge" style="background: #888;">For Reference</span>
+            </div>
+
+            <div class="collapsible-content">
+            <p style="color: #666; margin-bottom: 20px; font-size: 0.9rem;">Limited payments focus in these accelerators. Neo leans AI/enterprise SaaS; Speedrun focuses on gaming.</p>
+
+            <div class="companies-grid">
+                <div class="company-card">
+                    <div class="company-header">
+                        <div class="favicon">
+                            <img src="https://www.google.com/s2/favicons?domain=withmoment.com&sz=64" alt="Moment" onerror="this.parentElement.innerHTML='<div class=favicon-fallback>M</div>'">
+                        </div>
+                        <div class="company-name"><a href="https://withmoment.com" target="_blank">Moment</a></div>
+                    </div>
+                    <div class="batch-info">
+                        <span class="batch-logo neo">Neo</span> 2022/2023 Cohort
+                    </div>
+                    <p class="description"><strong>Fixed-Income Operating System</strong> - Automates trading and portfolio management for fixed-income teams. Raised $36M Series B led by Index Ventures with a16z, Lightspeed, Neo. Not pure payments but enables automated bond execution and treasury management via APIs.</p>
+                    <div class="tags">
+                        <span class="tag b2b">B2B</span>
+                        <span class="tag developer-tools">Developer Tools</span>
+                    </div>
+                </div>
+
+                <div class="company-card">
+                    <div class="company-header">
+                        <div class="favicon">
+                            <img src="https://www.google.com/s2/favicons?domain=aghanim.com&sz=64" alt="Aghanim" onerror="this.parentElement.innerHTML='<div class=favicon-fallback>A</div>'">
+                        </div>
+                        <div class="company-name"><a href="https://aghanim.com" target="_blank">Aghanim</a></div>
+                    </div>
+                    <div class="batch-info">
+                        <span class="batch-logo speedrun">Speedrun</span> SR002
+                    </div>
+                    <p class="description"><strong>Commerce & Payments for Mobile Games</strong> - Integrated commerce, live-ops automation, and payments platform for mobile games. Enables direct-to-consumer expansion beyond app stores. 52 employees, LA-based.</p>
+                    <div class="tags">
+                        <span class="tag gaming">Gaming</span>
+                        <span class="tag b2b">B2B</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="key-insight" style="margin-top: 25px;">
+                <h2>Note on Neo & Speedrun</h2>
+                <p><strong>Neo Accelerator:</strong> Primarily focuses on deep tech, AI, and enterprise SaaS. Notable alumni include Cursor (AI code editor), Kalshi (prediction markets), and Anterior (healthcare AI). Limited pure payments companies in recent cohorts.</p>
+                <p style="margin-top: 10px;"><strong>a16z Speedrun:</strong> Focuses on gaming, AI, creative tools, and immersive platforms. Has deployed $180M+ to 150+ startups, but most are in gaming/entertainment rather than traditional fintech. Aghanim is the notable payments-adjacent company.</p>
+            </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Report generated January 2026 | Data sourced from Y Combinator, Neo Accelerator, a16z Speedrun public information</p>
+            <p style="margin-top: 10px;">Note: Some batch assignments are approximate based on available public information. Company status and details may have changed since research date.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.querySelectorAll('.collapsible .section-header').forEach(header => {
+            header.addEventListener('click', () => {
+                header.parentElement.classList.toggle('expanded');
+            });
+        });
+    </script>
+</body>
+</html>
